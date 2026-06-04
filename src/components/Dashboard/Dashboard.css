@@ -1,0 +1,233 @@
+/* ── Dashboard ────────────────────────────────────────────────────────────── */
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.dashboard__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.dashboard__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 0.25rem;
+}
+
+.dashboard__subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.dashboard__logout-btn {
+  padding: 0.45rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #6b7280;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.dashboard__logout-btn:hover {
+  border-color: #fca5a5;
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+/* Workspace grid */
+.dashboard__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 540px) {
+  .dashboard__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .dashboard__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Workspace card */
+.ws-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.1s;
+  cursor: pointer;
+}
+
+.ws-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+  border-color: var(--color-primary, #6366f1);
+  transform: translateY(-1px);
+}
+
+.ws-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.ws-card__icon--new {
+  background: #f3f4f6 !important;
+  color: #9ca3af;
+  font-size: 1.5rem;
+  border: 2px dashed #d1d5db;
+}
+
+.ws-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ws-card__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 0.15rem;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ws-card__members {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.ws-card__arrow {
+  font-size: 1rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.ws-card:hover .ws-card__arrow {
+  color: var(--color-primary, #6366f1);
+  transform: translateX(3px);
+}
+
+.ws-card--new .ws-card__arrow { display: none; }
+
+/* ── Phase 5: card wrapper + analytics button ─────────────────────────────── */
+
+/* Wrapper stacks the board link and analytics button vertically */
+.ws-card-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.1s;
+  background: #fff;
+}
+
+.ws-card-wrap:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+  border-color: var(--color-primary, #6366f1);
+  transform: translateY(-1px);
+}
+
+/* Remove individual card border when inside a wrap */
+.ws-card-wrap .ws-card {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+.ws-card-wrap .ws-card:hover {
+  box-shadow: none;
+  border-color: transparent;
+  transform: none;
+}
+
+/* Analytics button — bottom strip of the card */
+.ws-card__analytics-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.01em;
+}
+
+.ws-card__analytics-btn:hover {
+  background: var(--color-primary-light, #e0e7ff);
+  color: var(--color-primary, #6366f1);
+}
+
+/* ── Dashboard quick-links row ────────────────────────────────────────────── */
+.dashboard__quick-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.dashboard__quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #374151;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.dashboard__quick-link:hover {
+  border-color: var(--color-primary, #6366f1);
+  background: var(--color-primary-light, #e0e7ff);
+  color: var(--color-primary, #6366f1);
+}
+
+/* AI Insights quick link variant */
+.dashboard__quick-link--ai {
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+
+.dashboard__quick-link--ai:hover {
+  border-color: #6366f1;
+  background: #e0e7ff;
+  color: #3730a3;
+}

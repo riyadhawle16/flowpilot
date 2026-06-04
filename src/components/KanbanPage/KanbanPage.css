@@ -1,0 +1,97 @@
+/* ── KanbanPage ───────────────────────────────────────────────────────────── */
+
+.kanban-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Top nav bar */
+.kanban-page__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1rem;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.kanban-page__back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary, #6366f1);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.kanban-page__back:hover {
+  background: rgba(99, 102, 241, 0.07);
+}
+
+.kanban-page__breadcrumb {
+  font-size: 0.875rem;
+  color: #6b7280;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kanban-page__breadcrumb::before {
+  content: '/';
+  margin-right: 0.75rem;
+  color: #d1d5db;
+}
+
+/* Analytics link — right-aligned */
+.kanban-page__analytics-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.kanban-page__analytics-link:hover {
+  border-color: var(--color-primary, #6366f1);
+  background: var(--color-primary-light, #e0e7ff);
+  color: var(--color-primary, #6366f1);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .kanban-page__analytics-link span:first-child {
+    display: none; /* hide emoji on very small screens, keep text */
+  }
+}
+
+/* AI Insights link variant */
+.kanban-page__ai-link {
+  background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+
+.kanban-page__ai-link:hover {
+  background: #e0e7ff;
+  border-color: #6366f1;
+  color: #3730a3;
+}

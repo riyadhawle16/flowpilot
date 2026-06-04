@@ -1,0 +1,82 @@
+/* ── AIInsightCard ────────────────────────────────────────────────────────── */
+
+.ai-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+
+.ai-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.09);
+}
+
+.ai-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem 0.7rem;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ai-card__title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.ai-card__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.ai-card__title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.ai-card__badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ai-card__body {
+  padding: 1rem 1.1rem;
+}
+
+/* ── ScoreGauge ───────────────────────────────────────────────────────────── */
+.score-gauge {
+  display: block;
+  overflow: visible;
+}
+
+/* ── RiskBar ──────────────────────────────────────────────────────────────── */
+.risk-bar {
+  width: 100%;
+  background: #f3f4f6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.risk-bar__fill {
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+/* ── SignalDot ────────────────────────────────────────────────────────────── */
+.signal-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

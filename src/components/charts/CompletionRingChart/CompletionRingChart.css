@@ -1,0 +1,47 @@
+/* ── CompletionRingChart ──────────────────────────────────────────────────── */
+
+.completion-ring {
+  position: relative;
+}
+
+.completion-ring__centre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.completion-ring__rate {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #6366f1;
+  line-height: 1;
+}
+
+.completion-ring__sub {
+  font-size: 0.72rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.completion-ring__legend {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.completion-ring__legend-item {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.completion-ring__legend-item--done {
+  color: #059669;
+  font-weight: 600;
+}

@@ -1,0 +1,99 @@
+/* ── FocusScorePanel ──────────────────────────────────────────────────────── */
+
+.fsp__body {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.fsp__gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.fsp__gauge-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 0;
+  text-align: center;
+  max-width: 90px;
+}
+
+/* Detail breakdown */
+.fsp__detail {
+  flex: 1;
+  min-width: 160px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.fsp__detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  gap: 0.5rem;
+}
+
+.fsp__detail-row:last-child {
+  border-bottom: none;
+}
+
+.fsp__detail-label {
+  font-size: 0.78rem;
+  color: #6b7280;
+  flex: 1;
+}
+
+.fsp__detail-right {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.fsp__detail-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #111827;
+  min-width: 18px;
+  text-align: right;
+}
+
+.fsp__detail-note {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.fsp__detail-note--ok {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.fsp__detail-note--warn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Tip */
+.fsp__tip {
+  margin: 0.75rem 0 0;
+  padding: 0.55rem 0.75rem;
+  background: #f9fafb;
+  border-left: 3px solid #6366f1;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.78rem;
+  color: #374151;
+  line-height: 1.45;
+}

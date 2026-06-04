@@ -1,0 +1,67 @@
+/* ── TaskCardSkeleton ─────────────────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.task-skeleton {
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  background: #fff;
+}
+
+.task-skeleton__stripe {
+  width: 4px;
+  flex-shrink: 0;
+  background: #e5e7eb;
+}
+
+.task-skeleton__body {
+  flex: 1;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.task-skeleton__line,
+.task-skeleton__chip {
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.task-skeleton__line--title {
+  height: 14px;
+  width: 80%;
+}
+
+.task-skeleton__line--desc {
+  height: 10px;
+  width: 60%;
+}
+
+.task-skeleton__footer {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.1rem;
+}
+
+.task-skeleton__chip {
+  height: 18px;
+  width: 50px;
+  border-radius: 999px;
+}
+
+.task-skeleton__chip--sm {
+  width: 36px;
+}

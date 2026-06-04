@@ -1,0 +1,66 @@
+/* ── ErrorBoundary ────────────────────────────────────────────────────────── */
+
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  min-height: 300px;
+  background: var(--surface, #fff);
+  border-radius: 14px;
+  border: 1px solid var(--border, #e5e7eb);
+  margin: 1rem;
+}
+
+.error-boundary__icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.error-boundary__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 0 0 0.5rem;
+}
+
+.error-boundary__message {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0 0 1.25rem;
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+.error-boundary__detail {
+  font-size: 0.72rem;
+  color: #ef4444;
+  background: #fee2e2;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  max-width: 480px;
+  overflow: auto;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.error-boundary__btn {
+  padding: 0.55rem 1.25rem;
+  background: var(--color-primary, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.error-boundary__btn:hover {
+  background: var(--color-primary-dark, #4f46e5);
+}

@@ -1,0 +1,111 @@
+/* ── OverdueSummary ───────────────────────────────────────────────────────── */
+
+.overdue-summary__count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.overdue-summary__count--alert {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Empty */
+.overdue-summary__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  background: #f0fdf4;
+  border-radius: 8px;
+  border: 1px dashed #bbf7d0;
+}
+
+/* List */
+.overdue-summary__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.overdue-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.overdue-item:last-child {
+  border-bottom: none;
+}
+
+.overdue-item__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.overdue-item__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.overdue-item__title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overdue-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.overdue-item__assignee {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  color: #6b7280;
+}
+
+.overdue-item__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+}
+
+.overdue-item__column {
+  font-size: 0.68rem;
+  color: #9ca3af;
+  background: #f3f4f6;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}

@@ -1,0 +1,228 @@
+/* ── ProductivityDashboard ────────────────────────────────────────────────── */
+
+.prod-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  min-height: 100%;
+}
+
+/* ── Page Header ──────────────────────────────────────────────────────────── */
+
+.prod-dashboard__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.prod-dashboard__header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.prod-dashboard__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 1rem;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.prod-dashboard__back:hover {
+  background: var(--color-primary-light, #e0e7ff);
+  border-color: var(--color-primary, #6366f1);
+  color: var(--color-primary, #6366f1);
+}
+
+.prod-dashboard__title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.prod-dashboard__subtitle {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.prod-dashboard__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  white-space: nowrap;
+  align-self: center;
+}
+
+/* ── Metric Cards Grid ────────────────────────────────────────────────────── */
+
+.prod-dashboard__metrics {
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 540px) {
+  .prod-dashboard__metrics {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .prod-dashboard__metrics {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ── Charts Grid ──────────────────────────────────────────────────────────── */
+
+.prod-dashboard__charts {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .prod-dashboard__charts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Wide cards span both columns */
+  .prod-dashboard__charts .chart-card--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prod-dashboard__charts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Trend chart — full width */
+  .prod-dashboard__charts .chart-card--wide:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Assignee chart — spans 2 cols */
+  .prod-dashboard__charts .chart-card--wide:not(:first-child) {
+    grid-column: span 2;
+  }
+}
+
+/* ── Responsive adjustments ───────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .prod-dashboard {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .prod-dashboard__title {
+    font-size: 1.1rem;
+  }
+
+  .prod-dashboard__metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+}
+
+/* ── AI Insights CTA Banner (Phase 6) ────────────────────────────────────── */
+
+.prod-dashboard__ai-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+  border: 1px solid #c7d2fe;
+  border-radius: 12px;
+}
+
+.prod-dashboard__ai-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.prod-dashboard__ai-banner-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.prod-dashboard__ai-banner-title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #3730a3;
+}
+
+.prod-dashboard__ai-banner-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #6366f1;
+  margin-top: 0.1rem;
+}
+
+.prod-dashboard__ai-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.45rem 1rem;
+  background: #6366f1;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.prod-dashboard__ai-banner-btn:hover {
+  background: #4f46e5;
+}
+
+.prod-dashboard__ai-banner-btn:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 480px) {
+  .prod-dashboard__ai-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .prod-dashboard__ai-banner-btn {
+    align-self: stretch;
+    justify-content: center;
+  }
+}

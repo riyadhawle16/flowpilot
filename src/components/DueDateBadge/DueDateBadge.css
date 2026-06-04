@@ -1,0 +1,61 @@
+/* ── DueDateBadge ─────────────────────────────────────────────────────────── */
+
+.due-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  line-height: 1.3;
+}
+
+.due-badge__icon {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.due-badge__text {
+  line-height: 1;
+}
+
+/* Status variants */
+.due-badge--overdue {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+  animation: pulse-overdue 2s infinite;
+}
+
+@keyframes pulse-overdue {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+.due-badge--today {
+  background: #fefce8;
+  color: #ca8a04;
+  border-color: #fde047;
+}
+
+.due-badge--soon {
+  background: #fff7ed;
+  color: #c2410c;
+  border-color: #fed7aa;
+}
+
+.due-badge--future,
+.due-badge--done {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+/* Short / compact form (inside task cards) */
+.due-badge--short {
+  padding: 0.12rem 0.4rem;
+  font-size: 0.68rem;
+}

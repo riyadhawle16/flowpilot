@@ -1,0 +1,90 @@
+/* ── ProjectRiskPanel ─────────────────────────────────────────────────────── */
+
+.prp__overall {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.prp__score-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prp__score-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  flex: 1;
+}
+
+.prp__score-num {
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.prp__level-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+/* Signals list */
+.prp__signals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.prp__signal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.prp__signal-top {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.prp__signal-label {
+  font-size: 0.78rem;
+  color: #374151;
+  font-weight: 500;
+  flex: 1;
+}
+
+.prp__signal-score {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #9ca3af;
+  min-width: 18px;
+  text-align: right;
+}
+
+.prp__signal-detail {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin: 0 0 0.2rem 1.2rem;
+  line-height: 1.3;
+}
+
+/* Advice */
+.prp__advice {
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  background: #f9fafb;
+  border-left: 3px solid #6366f1;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.78rem;
+  color: #374151;
+  line-height: 1.45;
+}

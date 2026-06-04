@@ -1,0 +1,124 @@
+/* ── LabelManager ─────────────────────────────────────────────────────────── */
+
+.label-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Existing tags */
+.label-manager__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.label-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1.5px solid;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.label-tag__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.62rem;
+  opacity: 0.65;
+  padding: 0.1rem;
+  line-height: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-tag__remove:hover { opacity: 1; }
+
+/* Add row */
+.label-manager__add-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Color swatches */
+.label-manager__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.label-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s, border-color 0.1s;
+}
+
+.label-swatch:hover { transform: scale(1.2); }
+
+.label-swatch--selected {
+  border-color: #111827;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px currentColor;
+}
+
+/* Input row */
+.label-manager__input-wrap {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.label-manager__input {
+  flex: 1;
+  padding: 0.45rem 0.65rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  color: #111827;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.label-manager__input:focus {
+  outline: none;
+  border-color: var(--color-primary, #6366f1);
+}
+
+.label-manager__add-btn {
+  padding: 0 0.7rem;
+  background: var(--color-primary, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.label-manager__add-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark, #4f46e5);
+}
+
+.label-manager__add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Hint */
+.label-manager__hint {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  margin: 0;
+}

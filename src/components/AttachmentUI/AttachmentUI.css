@@ -1,0 +1,124 @@
+/* ── AttachmentUI ─────────────────────────────────────────────────────────── */
+
+.attachment-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* List */
+.attachment-ui__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: background 0.12s;
+}
+
+.attachment-item:hover {
+  background: #f0f2f5;
+}
+
+.attachment-item__icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.attachment-item__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  overflow: hidden;
+}
+
+.attachment-item__name {
+  font-size: 0.82rem;
+  color: #374151;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachment-item__size {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.attachment-item__remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.3rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: color 0.12s, background 0.12s;
+}
+
+.attachment-item__remove:hover {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+/* Add button */
+.attachment-ui__add {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.attachment-ui__add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 8px;
+  background: none;
+  font-size: 0.82rem;
+  color: #6b7280;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.attachment-ui__add-btn:hover {
+  border-color: var(--color-primary, #6366f1);
+  color: var(--color-primary, #6366f1);
+  background: rgba(99, 102, 241, 0.04);
+}
+
+/* Hidden native file input */
+.attachment-ui__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.attachment-ui__hint {
+  font-size: 0.72rem;
+  color: #9ca3af;
+}

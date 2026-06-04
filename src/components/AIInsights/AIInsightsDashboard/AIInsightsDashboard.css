@@ -1,0 +1,183 @@
+/* ── AIInsightsDashboard ──────────────────────────────────────────────────── */
+
+.ai-dash {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  min-height: 100%;
+}
+
+/* ── Page Header ──────────────────────────────────────────────────────────── */
+
+.ai-dash__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.ai-dash__header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.ai-dash__back {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 1rem;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-dash__back:hover {
+  background: #e0e7ff;
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.ai-dash__title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ai-dash__subtitle {
+  font-size: 0.82rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.ai-dash__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  white-space: nowrap;
+  align-self: center;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+
+.ai-dash__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px dashed #e5e7eb;
+}
+
+.ai-dash__empty-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.ai-dash__empty-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem;
+}
+
+.ai-dash__empty-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+.ai-dash__empty-link {
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* ── Insights Grid ────────────────────────────────────────────────────────── */
+
+.ai-dash__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  /* Named areas for desktop layout */
+  grid-template-areas:
+    "focus"
+    "risk"
+    "workload"
+    "burnout"
+    "priority";
+}
+
+.ai-dash__cell--focus    { grid-area: focus; }
+.ai-dash__cell--risk     { grid-area: risk; }
+.ai-dash__cell--workload { grid-area: workload; }
+.ai-dash__cell--burnout  { grid-area: burnout; }
+.ai-dash__cell--priority { grid-area: priority; }
+
+/* ── Tablet: 2 columns ────────────────────────────────────────────────────── */
+
+@media (min-width: 640px) {
+  .ai-dash__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "focus    risk"
+      "workload burnout"
+      "priority priority";
+  }
+}
+
+/* ── Desktop: 3 columns ───────────────────────────────────────────────────── */
+
+@media (min-width: 1024px) {
+  .ai-dash__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "focus    workload burnout"
+      "risk     workload burnout"
+      "priority priority priority";
+  }
+}
+
+/* ── Mobile adjustments ───────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .ai-dash {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .ai-dash__title {
+    font-size: 1.1rem;
+  }
+}
