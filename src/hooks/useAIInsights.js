@@ -211,7 +211,6 @@ function computeWorkloadBalance(tasks) {
   const score = Math.round(100 - imbalance * 100);
 
   const overloaded = entries.filter((e) => e.activeTasks > avg * 1.5).map((e) => e.assignee);
-  const underloaded = entries.filter((e) => e.activeTasks < avg * 0.5).map((e) => e.assignee);
 
   const recommendation =
     overloaded.length > 0

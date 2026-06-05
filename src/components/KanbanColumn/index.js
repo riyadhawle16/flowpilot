@@ -72,19 +72,6 @@ function KanbanColumn({
     [column, onDrop]
   );
 
-  // ── Touch drag: the touch events live on each TaskCard (see TaskCard).
-  //    Column receives a custom event dispatched by TaskCard on touch-end. ────
-
-  const handleTouchDrop = useCallback(
-    (e) => {
-      // custom event detail: { taskId }
-      if (e.detail && e.detail.taskId) {
-        onDrop(column);
-      }
-    },
-    [column, onDrop]
-  );
-
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (

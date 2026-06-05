@@ -65,7 +65,7 @@ function Sidebar() {
 
         {/* Main nav */}
         <nav className="sidebar__nav" aria-label="Main navigation">
-          <ul className="sidebar__nav-list" role="list">
+          <ul className="sidebar__nav-list">
             {NAV_ITEMS.map((item) => (
               <li key={item.to}>
                 <NavLink
@@ -92,7 +92,7 @@ function Sidebar() {
         {isOpen && (
           <div className="sidebar__section">
             <span className="sidebar__section-title">Workspaces</span>
-            <ul className="sidebar__nav-list" role="list">
+            <ul className="sidebar__nav-list">
               {WORKSPACE_ITEMS.map((ws) => (
                 <li key={ws.id}>
                   <NavLink

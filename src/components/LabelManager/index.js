@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { LABEL_COLORS, generateId } from '../../context/KanbanContext';
 import './LabelManager.css';
 

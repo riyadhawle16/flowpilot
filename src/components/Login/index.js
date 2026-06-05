@@ -15,7 +15,7 @@ function validate(values) {
 }
 
 export default function LoginPage() {
-  const { login, error: authError, clearError, isLoading } = useAuth();
+  const { login, clearError, isLoading } = useAuth();
   const history = useHistory();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/dashboard';
