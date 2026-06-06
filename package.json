@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@vitejs/plugin-react": "4.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-joyride": "^2.9.3",
+    "react-joyride": "2.9.3",
     "react-router-dom": "5.3.4",
-    "recharts": "2.12.7"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "4.3.1",
+    "recharts": "2.12.7",
     "vite": "5.4.2"
   },
   "scripts": {
@@ -20,11 +18,7 @@
     "preview": "vite preview"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
