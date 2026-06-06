@@ -4,11 +4,11 @@ import { useAuth } from '../../context/AuthContext';
 import './Dashboard.css';
 
 export default function DashboardPage() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const demoWorkspaces = [
     { id: 'demo-project-alpha', name: 'Project Alpha', icon: '🚀', color: '#6366f1', memberCount: 3 },
-    { id: 'demo-marketing', name: 'Marketing', icon: '📣', color: '#f59e0b', memberCount: 5 },
+    { id: 'demo-marketing',     name: 'Marketing',     icon: '📣', color: '#f59e0b', memberCount: 5 },
   ];
 
   return (
@@ -19,23 +19,28 @@ export default function DashboardPage() {
           <h1 className="dashboard__title">Welcome, {user?.name}! 👋</h1>
           <p className="dashboard__subtitle">Your workspaces</p>
         </div>
-        <button className="dashboard__logout-btn" onClick={logout} type="button">
-          Logout
-        </button>
       </div>
 
       {/* Quick links */}
       <div className="dashboard__quick-links">
-        <Link to="/analytics" className="dashboard__quick-link">
+        <Link
+          to="/analytics"
+          className="dashboard__quick-link"
+          data-tour="analytics-link"
+        >
           📊 Global Analytics
         </Link>
-        <Link to="/ai-insights" className="dashboard__quick-link dashboard__quick-link--ai">
+        <Link
+          to="/ai-insights"
+          className="dashboard__quick-link dashboard__quick-link--ai"
+          data-tour="ai-insights-link"
+        >
           🤖 AI Insights
         </Link>
       </div>
 
       {/* Workspace grid */}
-      <div className="dashboard__grid">
+      <div className="dashboard__grid" data-tour="workspaces">
         {demoWorkspaces.map((ws) => (
           <div key={ws.id} className="ws-card-wrap">
             <Link
@@ -68,15 +73,19 @@ export default function DashboardPage() {
           </div>
         ))}
 
-        {/* Create workspace placeholder */}
-        <div className="ws-card ws-card--new" role="button" tabIndex={0}
-          aria-label="Create new workspace (Phase 2 feature)">
+        {/* Create workspace card */}
+        <button
+          className="ws-card ws-card--new"
+          aria-label="Create new workspace"
+          type="button"
+          data-tour="create-workspace"
+        >
           <div className="ws-card__icon ws-card__icon--new" aria-hidden="true">＋</div>
           <div className="ws-card__body">
             <h2 className="ws-card__name">New Workspace</h2>
-            <span className="ws-card__members">Phase 2 feature</span>
+            <span className="ws-card__members">Click to create</span>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );

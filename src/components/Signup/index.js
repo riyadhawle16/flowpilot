@@ -20,7 +20,7 @@ function validate(v) {
 }
 
 export default function SignupPage() {
-  const { signup, clearError, isLoading } = useAuth();
+  const { signup, clearError, authBusy } = useAuth();
   const history = useHistory();
   const [values, setValues] = useState({ name: '', email: '', password: '', confirm: '' });
   const [errors, setErrors] = useState({});
@@ -74,8 +74,10 @@ export default function SignupPage() {
           {field('email', 'Email', 'email', 'you@example.com')}
           {field('password', 'Password', 'password', '••••••')}
           {field('confirm', 'Confirm Password', 'password', '••••••')}
-          <button className="auth-btn" type="submit" disabled={isLoading} aria-busy={isLoading}>
-            {isLoading ? <span className="auth-spinner" aria-hidden="true" /> : 'Create Account'}
+          <button className="auth-btn" type="submit" disabled={authBusy} aria-busy={authBusy}>
+            {authBusy
+              ? <><span className="auth-spinner" aria-hidden="true" /> Creating…</>
+              : 'Create Account'}
           </button>
         </form>
         <p className="auth-card__footer">

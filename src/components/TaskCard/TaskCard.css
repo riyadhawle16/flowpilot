@@ -3,48 +3,43 @@
 .task-card {
   position: relative;
   display: flex;
-  background: #fff;
+  background: var(--surface, #fff);
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--border, #e5e7eb);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.07));
   cursor: grab;
   transition: box-shadow 0.15s, transform 0.15s, opacity 0.15s;
-  overflow: visible; /* allow menu to escape */
+  overflow: visible;
   user-select: none;
   -webkit-user-select: none;
   touch-action: none;
 }
 
 .task-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #d1d5db;
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.1));
+  border-color: var(--border-strong, #d1d5db);
 }
 
-.task-card:active {
-  cursor: grabbing;
-}
+.task-card:active { cursor: grabbing; }
 
-/* Overdue ring */
 .task-card--overdue {
   border-color: #fca5a5;
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15), 0 1px 3px rgba(0,0,0,0.07);
+  box-shadow: 0 0 0 2px rgba(239,68,68,0.15), var(--shadow-sm);
 }
 
 .task-card--dragging {
   opacity: 0.45;
   transform: scale(0.97);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   cursor: grabbing;
 }
 
-/* Left priority stripe */
 .task-card__priority-stripe {
   width: 4px;
   flex-shrink: 0;
   border-radius: 10px 0 0 10px;
 }
 
-/* Body */
 .task-card__body {
   flex: 1;
   padding: 0.6rem 0.75rem 0.6rem 0.6rem;
@@ -76,9 +71,9 @@
 }
 
 .task-card__label--more {
-  background: #f3f4f6 !important;
-  color: #6b7280 !important;
-  border-color: #e5e7eb !important;
+  background: var(--surface-hover, #f3f4f6) !important;
+  color: var(--text-secondary, #6b7280) !important;
+  border-color: var(--border, #e5e7eb) !important;
 }
 
 /* Title row */
@@ -92,7 +87,7 @@
 .task-card__title {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary, #111827);
   margin: 0;
   line-height: 1.35;
   display: -webkit-box;
@@ -101,10 +96,9 @@
   overflow: hidden;
 }
 
-/* Description */
 .task-card__desc {
   font-size: 0.78rem;
-  color: #6b7280;
+  color: var(--text-secondary, #6b7280);
   margin: 0;
   line-height: 1.4;
   display: -webkit-box;
@@ -122,7 +116,6 @@
   margin-top: 0.15rem;
 }
 
-/* Priority badge */
 .task-card__priority-badge {
   font-size: 0.68rem;
   font-weight: 700;
@@ -132,13 +125,12 @@
   white-space: nowrap;
 }
 
-/* Assignee */
 .task-card__assignee {
   display: flex;
   align-items: center;
   gap: 0.22rem;
   font-size: 0.7rem;
-  color: #6b7280;
+  color: var(--text-secondary, #6b7280);
   max-width: 90px;
 }
 
@@ -162,10 +154,9 @@
   white-space: nowrap;
 }
 
-/* Attachment chip */
 .task-card__attachments {
   font-size: 0.7rem;
-  color: #6b7280;
+  color: var(--text-secondary, #6b7280);
   white-space: nowrap;
 }
 
@@ -180,7 +171,7 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  color: #9ca3af;
+  color: var(--text-muted, #9ca3af);
   line-height: 1;
   padding: 0 0.2rem;
   border-radius: 4px;
@@ -188,18 +179,18 @@
 }
 
 .task-card__menu-btn:hover {
-  color: #374151;
-  background: #f3f4f6;
+  color: var(--text-primary, #374151);
+  background: var(--surface-hover, #f3f4f6);
 }
 
 .task-card__menu {
   position: absolute;
   top: calc(100% + 4px);
   right: 0;
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #e5e7eb);
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-md, 0 4px 16px rgba(0,0,0,0.12));
   min-width: 120px;
   z-index: 200;
   overflow: hidden;
@@ -220,12 +211,11 @@
   border: none;
   cursor: pointer;
   font-size: 0.8rem;
-  color: #374151;
+  color: var(--text-primary, #374151);
   transition: background 0.1s;
   font-family: inherit;
 }
 
-.task-card__menu-item:hover { background: #f9fafb; }
-
+.task-card__menu-item:hover { background: var(--surface-hover, #f9fafb); }
 .task-card__menu-item--danger { color: #ef4444; }
 .task-card__menu-item--danger:hover { background: #fee2e2; }

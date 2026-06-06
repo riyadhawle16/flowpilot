@@ -57,7 +57,7 @@ function MetricCard({ title, value, icon, color, bg, trend, suffix = '', loading
           </div>
 
           <div className="metric-card__value" aria-live="polite">
-            {value}
+            {value !== undefined && value !== null ? value : '—'}
             {suffix && <span className="metric-card__suffix">{suffix}</span>}
           </div>
 

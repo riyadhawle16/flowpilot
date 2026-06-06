@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 // ── Contexts ──────────────────────────────────────────────────────────────────
@@ -8,9 +8,10 @@ import { ToastProvider }          from './context/ToastContext';
 import { SidebarProvider }        from './context/SidebarContext';
 
 // ── Components ────────────────────────────────────────────────────────────────
-import Sidebar       from './components/Sidebar';
-import Navbar        from './components/Navbar';
-import ErrorBoundary from './components/ErrorBoundary';
+import Sidebar          from './components/Sidebar';
+import Navbar           from './components/Navbar';
+import ErrorBoundary    from './components/ErrorBoundary';
+import OnboardingTour   from './components/onboarding/OnboardingTour';
 
 // ── Pages ─────────────────────────────────────────────────────────────────────
 import LoginPage             from './components/Login';
@@ -36,12 +37,11 @@ function PageLoader() {
 // ─── Protected Route ──────────────────────────────────────────────────────────
 
 function ProtectedRoute({ component: Component, ...rest }) {
-  const { user, isLoading } = useAuth();
+  const { user } = useAuth();
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (isLoading) return <PageLoader />;
         if (!user) {
           return (
             <Redirect
@@ -62,12 +62,11 @@ function ProtectedRoute({ component: Component, ...rest }) {
 // ─── Public Route ─────────────────────────────────────────────────────────────
 
 function PublicRoute({ component: Component, ...rest }) {
-  const { user, isLoading } = useAuth();
+  const { user } = useAuth();
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (isLoading) return null;
         if (user) return <Redirect to="/dashboard" />;
         return <Component {...props} />;
       }}
@@ -78,12 +77,18 @@ function PublicRoute({ component: Component, ...rest }) {
 // ─── App Shell ────────────────────────────────────────────────────────────────
 
 function AppShell() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  // Show full-page spinner during session rehydration to avoid black flash
+  if (isLoading) return <PageLoader />;
 
   return (
     <div className="app-shell">
       {/* Top Navbar — always visible */}
       <Navbar />
+
+      {/* Onboarding tour — auto-shows once for new users */}
+      {user && <OnboardingTour />}
 
       <div className="app-body">
         {/* Sidebar — authenticated users only */}
@@ -135,6 +140,17 @@ function AppShell() {
 // ─── Root App — provider order: Theme → Toast → Router → Auth → Sidebar ───────
 
 export default function App() {
+  // Wake up backend on first load (Vite: import.meta.env, silent no-op if no URL)
+  useEffect(() => {
+    try {
+      const apiUrl =
+        (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) || '';
+      if (apiUrl) fetch(`${apiUrl}/health`).catch(() => {});
+    } catch {
+      // ignore
+    }
+  }, []);
+
   return (
     <ThemeProvider>
       <ToastProvider>

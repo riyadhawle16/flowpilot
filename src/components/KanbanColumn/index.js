@@ -4,13 +4,14 @@ import TaskCardSkeleton from '../TaskCardSkeleton';
 import './KanbanColumn.css';
 
 /**
- * Colour config per column — drives the header accent.
+ * Colour config per column — uses CSS variable fallbacks for theming.
+ * Colors match: Todo→text-secondary, In Progress→warning, Review→info, Done→success
  */
 const COLUMN_META = {
-  'Todo':        { color: '#6b7280', bg: '#f3f4f6', emoji: '📝' },
-  'In Progress': { color: '#f59e0b', bg: '#fffbeb', emoji: '🔄' },
-  'Review':      { color: '#3b82f6', bg: '#eff6ff', emoji: '👁️' },
-  'Done':        { color: '#10b981', bg: '#ecfdf5', emoji: '✅' },
+  'Todo':        { color: 'var(--text-secondary, #6b7280)',  bg: 'var(--surface-hover, #f3f4f6)',  emoji: '📝' },
+  'In Progress': { color: 'var(--warning, #f59e0b)',          bg: 'rgba(245,158,11,0.08)',           emoji: '🔄' },
+  'Review':      { color: 'var(--info, #3b82f6)',             bg: 'rgba(59,130,246,0.08)',           emoji: '👁️' },
+  'Done':        { color: 'var(--success, #22c55e)',          bg: 'rgba(34,197,94,0.08)',            emoji: '✅' },
 };
 
 /**

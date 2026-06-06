@@ -1,4 +1,5 @@
 /* ── Auth shared styles (Login + Signup) ──────────────────────────────────── */
+
 .auth-page {
   min-height: 100%;
   display: flex;
@@ -6,12 +7,14 @@
   justify-content: center;
   padding: 2rem 1rem;
   background: var(--bg-page, #f0f2f5);
+  overflow-y: auto;
 }
 
 .auth-card {
-  background: #fff;
+  background: var(--surface, #fff);
   border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+  border: 1px solid var(--border, #e5e7eb);
+  box-shadow: var(--shadow-md, 0 4px 24px rgba(0,0,0,0.09));
   padding: 2rem 2rem 1.75rem;
   width: 100%;
   max-width: 400px;
@@ -27,13 +30,13 @@
 .auth-card__title {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #111827;
+  color: var(--text-primary, #111827);
   margin: 0 0 0.25rem;
 }
 
 .auth-card__sub {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary, #6b7280);
   margin: 0 0 1.5rem;
 }
 
@@ -57,15 +60,16 @@
 .auth-label {
   font-size: 0.825rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--text-primary, #374151);
 }
 
 .auth-input {
   padding: 0.6rem 0.8rem;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid var(--border, #e5e7eb);
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #111827;
+  color: var(--text-primary, #111827);
+  background: var(--surface, #fff);
   transition: border-color 0.15s, box-shadow 0.15s;
   font-family: inherit;
   width: 100%;
@@ -98,6 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   min-height: 44px;
   transition: background 0.15s;
   font-family: inherit;
@@ -109,11 +114,13 @@
 
 .auth-spinner {
   display: inline-block;
-  width: 18px; height: 18px;
+  width: 18px;
+  height: 18px;
   border: 2px solid rgba(255,255,255,0.4);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -121,7 +128,7 @@
 .auth-card__footer {
   text-align: center;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--text-secondary, #6b7280);
   margin-top: 1.25rem;
 }
 

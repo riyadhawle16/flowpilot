@@ -1,70 +1,89 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   App.css — Phase 7: Full dark/light mode + production-ready global styles
+   App.css — FlowPilot AI — Mobile-first, dark/light mode
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Light mode (default) CSS variables ──────────────────────────────────── */
+/* ── Light mode variables ─────────────────────────────────────────────────── */
 :root {
-  /* Brand */
+  /* ── Brand / accent ── */
   --color-primary:       #6366f1;
   --color-primary-dark:  #4f46e5;
   --color-primary-light: #e0e7ff;
-  --color-danger:        #ef4444;
-  --color-success:       #10b981;
-  --color-warning:       #f59e0b;
 
-  /* Surfaces */
+  /* ── Semantic status ── */
+  --color-danger:        #ef4444;
+  --color-success:       #22c55e;
+  --color-warning:       #f59e0b;
+  --color-info:          #3b82f6;
+
+  /* ── Surfaces (light) ── */
   --bg-page:             #f0f2f5;
+  --bg-primary:          #f8fafc;
+  --bg-secondary:        #f1f5f9;
+  --bg-card:             #ffffff;
   --surface:             #ffffff;
   --surface-hover:       #f3f4f6;
   --surface-elevated:    #ffffff;
 
-  /* Text */
-  --text-primary:        #111827;
-  --text-secondary:      #6b7280;
-  --text-muted:          #9ca3af;
+  /* ── Text (light) ── */
+  --text-primary:        #0f172a;
+  --text-secondary:      #475569;
+  --text-muted:          #94a3b8;
   --text-inverse:        #ffffff;
 
-  /* Borders */
-  --border:              #e5e7eb;
-  --border-strong:       #d1d5db;
+  /* ── Borders (light) ── */
+  --border:              #e2e8f0;
+  --border-color:        #e2e8f0;
+  --border-strong:       #cbd5e1;
 
-  /* Shadows */
-  --shadow-sm:   0 1px 4px rgba(0,0,0,0.06);
-  --shadow-md:   0 4px 16px rgba(0,0,0,0.09);
-  --shadow-lg:   0 8px 32px rgba(0,0,0,0.12);
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.09);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.12);
 
-  /* Skeleton */
+  /* ── Skeleton ── */
   --skeleton-base:  #f0f0f0;
   --skeleton-shine: #e0e0e0;
 
-  /* Misc */
-  --radius:              8px;
-  --radius-lg:           14px;
-  --transition:          0.15s ease;
+  /* ── Misc ── */
+  --radius:    8px;
+  --radius-lg: 14px;
+  --transition: 0.15s ease;
+
+  /* ── Aliases (matches prompt spec) ── */
+  --accent-primary:  var(--color-primary);
+  --accent-hover:    var(--color-primary-dark);
+  --success:         var(--color-success);
+  --warning:         var(--color-warning);
+  --danger:          var(--color-danger);
+  --info:            var(--color-info);
 }
 
-/* ── Dark mode overrides ──────────────────────────────────────────────────── */
+/* ── Dark mode variables ──────────────────────────────────────────────────── */
 [data-theme='dark'] {
   --color-primary:       #818cf8;
   --color-primary-dark:  #6366f1;
   --color-primary-light: #1e1b4b;
 
-  --bg-page:             #0f0f13;
-  --surface:             #1a1a24;
+  --bg-page:             #0f0f1a;
+  --bg-primary:          #0f0f1a;
+  --bg-secondary:        #1a1a2e;
+  --bg-card:             #16213e;
+  --surface:             #1a1a2e;
   --surface-hover:       #242430;
-  --surface-elevated:    #22222e;
+  --surface-elevated:    #1e1e30;
 
   --text-primary:        #f1f5f9;
   --text-secondary:      #94a3b8;
   --text-muted:          #64748b;
   --text-inverse:        #111827;
 
-  --border:              #2d2d3d;
+  --border:              #2d2d44;
+  --border-color:        #2d2d44;
   --border-strong:       #3d3d50;
 
-  --shadow-sm:   0 1px 4px rgba(0,0,0,0.35);
-  --shadow-md:   0 4px 16px rgba(0,0,0,0.45);
-  --shadow-lg:   0 8px 32px rgba(0,0,0,0.55);
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.35);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.45);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.55);
 
   --skeleton-base:  #2d2d3a;
   --skeleton-shine: #3a3a4a;
@@ -73,11 +92,7 @@
 }
 
 /* ── Reset / Base ─────────────────────────────────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body, #root {
   height: 100%;
@@ -93,22 +108,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background var(--transition), color var(--transition);
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font-family: inherit; }
 
-button {
-  font-family: inherit;
-}
-
-input, textarea, select {
-  font-family: inherit;
-}
-
-/* ── App Shell — Sidebar layout ───────────────────────────────────────────── */
+/* ── App shell ────────────────────────────────────────────────────────────── */
 
 .app-shell {
   display: flex;
@@ -117,77 +124,39 @@ input, textarea, select {
   min-height: 100vh;
 }
 
-/* Layout wrapper: sidebar + content */
+/* Sidebar + main content row */
 .app-body {
   display: flex;
   flex: 1;
   min-height: 0;
+  /* Critical: allows sidebar overlay without clipping the board's horizontal scroll */
   overflow: hidden;
+  position: relative;
 }
 
+/* Main content area */
 .app-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  min-width: 0;
+  /* Hidden overflow so kanban board can manage its own internal scroll */
+  overflow: hidden;
   background: var(--bg-page);
   transition: background var(--transition);
 }
 
-/* ── Topbar (mobile only — replaces Navbar when sidebar is active) ─────── */
-.app-topbar {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-  height: 52px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-  z-index: 140;
+/* ── Page-level scroll ────────────────────────────────────────────────────── */
+/* Pages that scroll their own content */
+.dashboard,
+.prod-dashboard,
+.ai-dash {
+  overflow-y: auto;
+  max-height: 100%;
 }
 
-@media (max-width: 767px) {
-  .app-topbar {
-    display: flex;
-  }
-}
-
-.app-topbar__brand {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--color-primary);
-}
-
-.app-topbar__actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.app-topbar__btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  padding: 0.3rem;
-  border-radius: 6px;
-  color: var(--text-secondary);
-  transition: background var(--transition), color var(--transition);
-  line-height: 1;
-}
-
-.app-topbar__btn:hover {
-  background: var(--surface-hover);
-  color: var(--text-primary);
-}
-
-/* ── Global loading spinner ───────────────────────────────────────────────── */
+/* ── Loading spinner ──────────────────────────────────────────────────────── */
 
 .app-loading {
   display: flex;
@@ -207,47 +176,39 @@ input, textarea, select {
   animation: appSpin 0.7s linear infinite;
 }
 
-@keyframes appSpin {
-  to { transform: rotate(360deg); }
-}
+@keyframes appSpin { to { transform: rotate(360deg); } }
 
-/* ── Scrollbar (webkit) ───────────────────────────────────────────────────── */
-
+/* ── Scrollbars ───────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-track { background: var(--bg-secondary, var(--surface-hover)); }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
+  background: var(--border-color, var(--border-strong));
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-primary, var(--color-primary)); }
 
 /* ── Focus ring ───────────────────────────────────────────────────────────── */
-
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 /* ── Utilities ────────────────────────────────────────────────────────────── */
-
 .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0;
 }
 
-/* ── Dark mode: inherit surface bg on common elements ─────────────────────── */
+/* ── Dark mode surface overrides ──────────────────────────────────────────── */
 
 [data-theme='dark'] .auth-card,
 [data-theme='dark'] .ws-card,
 [data-theme='dark'] .ws-card-wrap,
-[data-theme='dark'] .dashboard,
 [data-theme='dark'] .ai-card,
 [data-theme='dark'] .chart-card,
 [data-theme='dark'] .metric-card,
@@ -262,53 +223,10 @@ input, textarea, select {
   color: var(--text-primary);
 }
 
-[data-theme='dark'] .auth-input,
-[data-theme='dark'] .task-form__input,
-[data-theme='dark'] .task-form__textarea,
-[data-theme='dark'] .task-form__select,
-[data-theme='dark'] .filter-panel__select,
-[data-theme='dark'] .filter-panel__input,
-[data-theme='dark'] .board-toolbar__search,
-[data-theme='dark'] .board-toolbar__sort,
-[data-theme='dark'] .label-manager__input {
-  background: var(--surface-hover);
-  border-color: var(--border);
-  color: var(--text-primary);
-}
-
-[data-theme='dark'] .auth-input:focus,
-[data-theme='dark'] .task-form__input:focus,
-[data-theme='dark'] .task-form__textarea:focus,
-[data-theme='dark'] .task-form__select:focus {
-  border-color: var(--color-primary);
+[data-theme='dark'] .task-form__header,
+[data-theme='dark'] .task-form__actions {
   background: var(--surface);
-}
-
-[data-theme='dark'] .task-card__title,
-[data-theme='dark'] .auth-card__title,
-[data-theme='dark'] .kanban-board__title,
-[data-theme='dark'] .prod-dashboard__title,
-[data-theme='dark'] .ai-dash__title,
-[data-theme='dark'] .chart-card__title,
-[data-theme='dark'] .ai-card__title {
-  color: var(--text-primary);
-}
-
-[data-theme='dark'] .task-card__desc,
-[data-theme='dark'] .auth-card__sub,
-[data-theme='dark'] .task-form__label,
-[data-theme='dark'] .auth-label,
-[data-theme='dark'] .chart-card__subtitle,
-[data-theme='dark'] .prod-dashboard__subtitle {
-  color: var(--text-secondary);
-}
-
-[data-theme='dark'] .kanban-board,
-[data-theme='dark'] .kanban-board__columns,
-[data-theme='dark'] .kanban-page,
-[data-theme='dark'] .prod-dashboard,
-[data-theme='dark'] .ai-dash {
-  background: var(--bg-page);
+  border-color: var(--border);
 }
 
 [data-theme='dark'] .kanban-board__header,
@@ -324,50 +242,24 @@ input, textarea, select {
   border-color: var(--border);
 }
 
-[data-theme='dark'] .kanban-column__body {
-  background: var(--surface);
-}
-
 [data-theme='dark'] .task-form-overlay,
 [data-theme='dark'] .confirm-dialog-overlay {
   background: rgba(0, 0, 0, 0.65);
 }
 
-[data-theme='dark'] .task-card {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+[data-theme='dark'] .ws-card__analytics-btn {
+  background: var(--surface-hover);
+  border-color: var(--border);
+  color: var(--text-secondary);
 }
 
-[data-theme='dark'] .navbar__link:hover,
-[data-theme='dark'] .navbar__link--active {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-}
-
-[data-theme='dark'] .navbar__logout:hover {
-  background: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-}
-
-/* Dashboard dark */
-[data-theme='dark'] .dashboard__quick-link {
+[data-theme='dark'] .prod-dashboard__back,
+[data-theme='dark'] .prod-dashboard__badge {
   background: var(--surface);
   border-color: var(--border);
   color: var(--text-secondary);
 }
 
-[data-theme='dark'] .dashboard__quick-link:hover {
-  border-color: var(--color-primary);
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-}
-
-[data-theme='dark'] .ws-card:hover,
-[data-theme='dark'] .ws-card-wrap:hover {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-md);
-}
-
-/* Toast dark */
 [data-theme='dark'] .toast {
   background: var(--surface-elevated);
   box-shadow: var(--shadow-lg);
@@ -375,33 +267,281 @@ input, textarea, select {
 
 [data-theme='dark'] .toast__title  { color: var(--text-primary); }
 [data-theme='dark'] .toast__message { color: var(--text-secondary); }
-[data-theme='dark'] .toast__close   { color: var(--text-muted); }
-
-/* Charts dark */
-[data-theme='dark'] .chart-card {
-  box-shadow: var(--shadow-sm);
-}
 
 [data-theme='dark'] .chart-tooltip {
   background: var(--surface-elevated);
   border-color: var(--border);
-}
-
-[data-theme='dark'] .chart-tooltip__label,
-[data-theme='dark'] .chart-tooltip__value {
   color: var(--text-primary);
 }
 
-/* ── Print ────────────────────────────────────────────────────────────────── */
+/* Task form buttons in dark */
+[data-theme='dark'] .task-form__btn--cancel {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
 
+[data-theme='dark'] .task-card__menu { background: var(--surface-elevated); }
+[data-theme='dark'] .task-card__menu-item { color: var(--text-primary); }
+[data-theme='dark'] .task-card__menu-item:hover { background: var(--surface-hover); }
+
+/* Kanban column empty button */
+[data-theme='dark'] .kanban-column__empty-btn {
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+
+/* AI banner dark */
+[data-theme='dark'] .prod-dashboard__ai-banner {
+  background: linear-gradient(135deg, #1e1b4b 0%, #2e1b4b 100%);
+  border-color: #3730a3;
+}
+
+[data-theme='dark'] .prod-dashboard__ai-banner-title { color: #c7d2fe; }
+[data-theme='dark'] .prod-dashboard__ai-banner-sub { color: #818cf8; }
+
+/* ── Print ────────────────────────────────────────────────────────────────── */
 @media print {
-  .sidebar,
-  .app-topbar,
-  .navbar,
-  .toast-container {
-    display: none !important;
-  }
-  .app-main {
-    overflow: visible;
-  }
+  .sidebar, .navbar, .toast-container { display: none !important; }
+  .app-main { overflow: visible; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   GLOBAL COMPONENT OVERRIDES — dark + light mode using CSS variables
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── All surfaces pick up theme variables automatically ───────────────────── */
+.auth-card,
+.ws-card,
+.ws-card-wrap,
+.ai-card,
+.chart-card,
+.metric-card,
+.task-card,
+.task-form,
+.kanban-column,
+.confirm-dialog,
+.error-boundary,
+.empty-state,
+.sidebar,
+.navbar,
+.board-toolbar,
+.kanban-board__header,
+.kanban-page__nav {
+  background: var(--bg-card, var(--surface));
+  border-color: var(--border-color, var(--border));
+  color: var(--text-primary);
+  transition: background var(--transition), border-color var(--transition),
+    color var(--transition);
+}
+
+/* ── Form inputs ─────────────────────────────────────────────────────────── */
+input,
+textarea,
+select,
+.auth-input,
+.task-form__input,
+.task-form__textarea,
+.task-form__select,
+.board-toolbar__search,
+.board-toolbar__sort,
+.filter-panel__select,
+.filter-panel__input,
+.label-manager__input {
+  background: var(--bg-secondary, var(--surface-hover)) !important;
+  border-color: var(--border-color, var(--border)) !important;
+  color: var(--text-primary) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.auth-input:focus,
+.task-form__input:focus,
+.task-form__textarea:focus,
+.task-form__select:focus,
+.board-toolbar__search:focus,
+.label-manager__input:focus {
+  border-color: var(--accent-primary, var(--color-primary)) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+/* Primary */
+.auth-btn,
+.kanban-board__add-btn,
+.task-form__btn--submit,
+.prod-dashboard__ai-banner-btn {
+  background: var(--accent-primary, var(--color-primary));
+  color: #fff;
+  border: none;
+}
+
+.auth-btn:hover:not(:disabled),
+.kanban-board__add-btn:hover,
+.task-form__btn--submit:hover:not(:disabled),
+.prod-dashboard__ai-banner-btn:hover {
+  background: var(--accent-hover, var(--color-primary-dark));
+}
+
+/* Cancel / outline */
+.task-form__btn--cancel,
+.dashboard__logout-btn {
+  background: transparent;
+  border: 1.5px solid var(--border-color, var(--border));
+  color: var(--text-secondary);
+}
+
+.task-form__btn--cancel:hover:not(:disabled),
+.dashboard__logout-btn:hover {
+  border-color: var(--danger, var(--color-danger));
+  color: var(--danger, var(--color-danger));
+  background: rgba(239, 68, 68, 0.06);
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+h1, h2, h3 { color: var(--text-primary); }
+
+.dashboard__title,
+.kanban-board__title,
+.prod-dashboard__title,
+.ai-dash__title,
+.chart-card__title,
+.ai-card__title,
+.task-form__title,
+.auth-card__title,
+.confirm-dialog__title,
+.error-boundary__title {
+  color: var(--text-primary);
+}
+
+.dashboard__subtitle,
+.prod-dashboard__subtitle,
+.ai-dash__subtitle,
+.chart-card__subtitle,
+.task-form__label,
+.auth-label,
+.auth-card__sub,
+.kanban-column__name {
+  color: var(--text-secondary);
+}
+
+.task-card__desc,
+.kanban-column__empty-text,
+.chart-card__empty,
+.confirm-dialog__message,
+.error-boundary__message,
+.attachment-ui__hint,
+.label-manager__hint {
+  color: var(--text-muted);
+}
+
+/* ── Metric / stat cards — colored left border by status ─────────────────── */
+.metric-card {
+  background: var(--bg-card, var(--surface));
+  border-color: var(--border-color, var(--border));
+}
+
+.metric-card .metric-card__value { color: var(--text-primary); }
+.metric-card .metric-card__title { color: var(--text-secondary); }
+
+/* ── Kanban column top-border colors (overrides inline styles) ────────────── */
+/* These are applied via inline style in KanbanColumn, but we document them */
+/* Todo: var(--text-secondary) | In Progress: var(--warning) */
+/* Review: var(--info)        | Done: var(--success)         */
+
+/* ── Sidebar active state ─────────────────────────────────────────────────── */
+.sidebar__nav-item--active {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-primary, var(--color-primary));
+  font-weight: 700;
+  border-left: 3px solid var(--accent-primary, var(--color-primary));
+  padding-left: calc(0.65rem - 3px);
+}
+
+.sidebar__nav-item:hover:not(.sidebar__nav-item--active) {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+/* ── Empty states ─────────────────────────────────────────────────────────── */
+.kanban-column__empty,
+.chart-card__empty,
+.ai-dash__empty {
+  background: var(--bg-secondary, var(--surface-hover));
+  border-color: var(--border-color, var(--border));
+  color: var(--text-muted);
+  border-radius: 8px;
+}
+
+.kanban-column__empty-icon,
+.ai-dash__empty-icon {
+  opacity: 0.35;
+}
+
+/* ── Toast ─────────────────────────────────────────────────────────────── */
+.toast {
+  background: var(--bg-card, var(--surface-elevated));
+  border-color: var(--border-color, var(--border));
+  box-shadow: var(--shadow-lg);
+}
+
+.toast__title  { color: var(--text-primary); }
+.toast__message { color: var(--text-secondary); }
+.toast__close   { color: var(--text-muted); }
+
+/* ── Chart tooltip ────────────────────────────────────────────────────────── */
+.chart-tooltip {
+  background: var(--bg-card, var(--surface-elevated));
+  border-color: var(--border-color, var(--border));
+}
+
+.chart-tooltip__label,
+.chart-tooltip__value { color: var(--text-primary); }
+.chart-tooltip__key   { color: var(--text-secondary); }
+
+/* ── Task card menu ───────────────────────────────────────────────────────── */
+.task-card__menu {
+  background: var(--bg-card, var(--surface-elevated));
+  border-color: var(--border-color, var(--border));
+}
+
+.task-card__menu-item { color: var(--text-primary); }
+.task-card__menu-item:hover { background: var(--surface-hover); }
+.task-card__menu-item--danger { color: var(--danger, #ef4444); }
+.task-card__menu-item--danger:hover { background: rgba(239,68,68,0.08); }
+
+/* ── Task form header / actions ───────────────────────────────────────────── */
+.task-form__header,
+.task-form__actions {
+  background: var(--bg-card, var(--surface));
+  border-color: var(--border-color, var(--border));
+}
+
+/* ── Analytics AI banner ──────────────────────────────────────────────────── */
+[data-theme='dark'] .prod-dashboard__ai-banner {
+  background: linear-gradient(135deg, #1e1b4b 0%, #2d1b4b 100%);
+  border-color: #3730a3;
+}
+[data-theme='dark'] .prod-dashboard__ai-banner-title { color: #c7d2fe; }
+[data-theme='dark'] .prod-dashboard__ai-banner-sub   { color: #818cf8; }
+
+/* ── Navbar user chip ─────────────────────────────────────────────────────── */
+.navbar__user-chip {
+  background: var(--surface-hover);
+  border-color: var(--border-color, var(--border));
+}
+
+.navbar__user-name { color: var(--text-primary); }
+
+/* ── Confirm dialog ───────────────────────────────────────────────────────── */
+.confirm-dialog {
+  background: var(--bg-card, var(--surface));
+  border-color: var(--border-color, var(--border));
+}
+
+/* ── Print ────────────────────────────────────────────────────────────────── */
+@media print {
+  .sidebar, .navbar, .toast-container { display: none !important; }
+  .app-main { overflow: visible; }
 }

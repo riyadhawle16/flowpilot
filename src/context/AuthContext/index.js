@@ -11,11 +11,12 @@ import { login as svcLogin, signup as svcSignup, logout as svcLogout } from '../
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser]         = useState(null);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError]       = useState(null);
+  const [user, setUser]           = useState(null);
+  const [isLoading, setLoading]   = useState(true);  // true only during initial session rehydration
+  const [authBusy, setAuthBusy]   = useState(false);  // true during login/signup API calls
+  const [error, setError]         = useState(null);
 
-  // Rehydrate session from localStorage on mount
+  // ── Rehydrate session from localStorage on mount ──────────────────────────
   useEffect(() => {
     try {
       const raw = localStorage.getItem('flowpilot_user');
@@ -29,34 +30,40 @@ export function AuthProvider({ children }) {
 
   const clearError = useCallback(() => setError(null), []);
 
+  // ── login ─────────────────────────────────────────────────────────────────
+  // Uses authBusy (not isLoading) so PublicRoute never unmounts during submit
   const login = useCallback(async (email, password) => {
-    setLoading(true);
+    setAuthBusy(true);
     setError(null);
     try {
       const u = await svcLogin(email, password);
       setUser(u);
+      return u;
     } catch (err) {
       setError(err.message);
       throw err;
     } finally {
-      setLoading(false);
+      setAuthBusy(false);
     }
   }, []);
 
+  // ── signup ────────────────────────────────────────────────────────────────
   const signup = useCallback(async (name, email, password) => {
-    setLoading(true);
+    setAuthBusy(true);
     setError(null);
     try {
       const u = await svcSignup(name, email, password);
       setUser(u);
+      return u;
     } catch (err) {
       setError(err.message);
       throw err;
     } finally {
-      setLoading(false);
+      setAuthBusy(false);
     }
   }, []);
 
+  // ── logout ────────────────────────────────────────────────────────────────
   const logout = useCallback(() => {
     svcLogout();
     setUser(null);
@@ -64,8 +71,17 @@ export function AuthProvider({ children }) {
   }, []);
 
   const value = useMemo(
-    () => ({ user, isLoading, error, login, signup, logout, clearError }),
-    [user, isLoading, error, login, signup, logout, clearError]
+    () => ({
+      user,
+      isLoading,               // session rehydration only
+      authBusy,                // login/signup in-progress
+      error,
+      login,
+      signup,
+      logout,
+      clearError,
+    }),
+    [user, isLoading, authBusy, error, login, signup, logout, clearError]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

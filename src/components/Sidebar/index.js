@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth }    from '../../context/AuthContext';
 import { useSidebar } from '../../context/SidebarContext';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme }   from '../../context/ThemeContext';
 import './Sidebar.css';
 
 const NAV_ITEMS = [
-  { to: '/dashboard',   icon: '🏠', label: 'Dashboard',   exact: true },
-  { to: '/analytics',   icon: '📊', label: 'Analytics' },
-  { to: '/ai-insights', icon: '🤖', label: 'AI Insights' },
+  { to: '/dashboard',   icon: '🏠', label: 'Dashboard',   exact: true,  tour: null },
+  { to: '/analytics',   icon: '📊', label: 'Analytics',   exact: false, tour: 'analytics' },
+  { to: '/ai-insights', icon: '🤖', label: 'AI Insights', exact: false, tour: 'ai-insights' },
 ];
 
 const WORKSPACE_ITEMS = [
@@ -16,23 +16,21 @@ const WORKSPACE_ITEMS = [
   { id: 'demo-marketing',     name: 'Marketing',     icon: '📣', color: '#f59e0b' },
 ];
 
-/**
- * Sidebar — responsive collapsible navigation sidebar.
- * On mobile: slides in as overlay from the left.
- * On tablet/desktop: persistent collapsed or expanded rail.
- */
+function replayTour() {
+  localStorage.removeItem('flowpilot_tour_seen');
+  window.location.reload();
+}
+
 function Sidebar() {
   const { isOpen, isMobile, close } = useSidebar();
-  const { user, logout } = useAuth();
-  const { isDark, toggleTheme } = useTheme();
-  const location = useLocation();
+  const { user, logout }            = useAuth();
+  const { isDark, toggleTheme }     = useTheme();
+  const location                    = useLocation();
 
-  // Close mobile sidebar on navigation
   useEffect(() => {
     if (isMobile) close();
   }, [location.pathname, isMobile, close]);
 
-  // Close on backdrop click (mobile)
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) close();
   };
@@ -54,13 +52,12 @@ function Sidebar() {
         }`}
         aria-label="Application navigation"
         aria-hidden={isMobile && !isOpen ? 'true' : undefined}
+        data-tour="sidebar"
       >
         {/* Brand */}
         <div className="sidebar__brand">
           <span className="sidebar__brand-icon" aria-hidden="true">✈️</span>
-          {isOpen && (
-            <span className="sidebar__brand-name">FlowPilot AI</span>
-          )}
+          {isOpen && <span className="sidebar__brand-name">FlowPilot AI</span>}
         </div>
 
         {/* Main nav */}
@@ -75,6 +72,7 @@ function Sidebar() {
                   activeClassName="sidebar__nav-item--active"
                   title={!isOpen ? item.label : undefined}
                   aria-label={item.label}
+                  data-tour={item.tour || undefined}
                 >
                   <span className="sidebar__nav-icon" aria-hidden="true">
                     {item.icon}
@@ -90,7 +88,7 @@ function Sidebar() {
 
         {/* Workspaces section */}
         {isOpen && (
-          <div className="sidebar__section">
+          <div className="sidebar__section" data-tour="workspaces">
             <span className="sidebar__section-title">Workspaces</span>
             <ul className="sidebar__nav-list">
               {WORKSPACE_ITEMS.map((ws) => (
@@ -118,13 +116,14 @@ function Sidebar() {
 
         {/* Bottom actions */}
         <div className="sidebar__bottom">
-          {/* Dark mode toggle */}
+          {/* Theme toggle */}
           <button
             className="sidebar__action-btn"
             onClick={toggleTheme}
             title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             type="button"
+            data-tour="theme-toggle"
           >
             <span aria-hidden="true">{isDark ? '☀️' : '🌙'}</span>
             {isOpen && (
@@ -134,9 +133,23 @@ function Sidebar() {
             )}
           </button>
 
-          {/* User + logout */}
+          {/* Replay tour */}
+          {isOpen && (
+            <button
+              className="sidebar__action-btn sidebar__action-btn--muted"
+              onClick={replayTour}
+              title="Replay onboarding tour"
+              aria-label="Replay onboarding tour"
+              type="button"
+            >
+              <span aria-hidden="true">📖</span>
+              <span className="sidebar__nav-label">Replay Tour</span>
+            </button>
+          )}
+
+          {/* User row */}
           {user && (
-            <div className="sidebar__user">
+            <div className="sidebar__user" data-tour="user-profile">
               <div
                 className="sidebar__user-avatar"
                 aria-label={`User: ${user.name}`}

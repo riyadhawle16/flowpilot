@@ -112,7 +112,7 @@ function KanbanBoard({ workspaceName }) {
   // ── Render ────────────────────────────────────────────────────────────────
 
   return (
-    <div className="kanban-board">
+    <div className="kanban-board" data-tour="board">
       {/* ── Board Header ──────────────────────────────────────────── */}
       <div className="kanban-board__header">
         <div className="kanban-board__title-group">
@@ -124,6 +124,7 @@ function KanbanBoard({ workspaceName }) {
           onClick={() => handleOpenCreate('Todo')}
           aria-label="Add new task"
           type="button"
+          data-tour="new-task"
         >
           <span aria-hidden="true">＋</span> New Task
         </button>
